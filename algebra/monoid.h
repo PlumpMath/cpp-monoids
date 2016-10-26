@@ -27,7 +27,7 @@ namespace algebra
   struct monoid;
 
   template <typename M, typename = std::enable_if_t<is_monoid_v<M>>>
-  inline constexpr M mzero()
+  inline constexpr M mempty()
   {
     return monoid<M>::zero();
   }
@@ -41,7 +41,7 @@ namespace algebra
   template <typename InputIt,
             typename M = typename std::iterator_traits<InputIt>::value_type,
             typename = std::enable_if_t<is_monoid_v<M>>>
-  inline constexpr M maccumulate(InputIt begin, InputIt end, M init = mzero<M>())
+  inline constexpr M maccumulate(InputIt begin, InputIt end, M init = mempty<M>())
   {
     while (begin != end)
       init = mappend(init, *begin++);
@@ -89,7 +89,7 @@ namespace algebra
             typename UnaryOp,
             typename M = std::result_of_t<UnaryOp(typename std::iterator_traits<InputIt>::value_type)>,
             typename = std::enable_if_t<is_monoid_v<M>>>
-  inline M mtransform_accumulate(InputIt first, InputIt last, UnaryOp op, M init = mzero<M>())
+  inline M mtransform_accumulate(InputIt first, InputIt last, UnaryOp op, M init = mempty<M>())
   {
     return stransform_accumulate(first, last, op, init);
   }
@@ -97,7 +97,7 @@ namespace algebra
   template <typename InputIt,
             typename M = typename std::iterator_traits<InputIt>::value_type,
             typename = std::enable_if_t<is_monoid_v<M>>>
-  inline M mintersperse(InputIt first, InputIt last, M e, M init = mzero<M>())
+  inline M mintersperse(InputIt first, InputIt last, M e, M init = mempty<M>())
   {
     return sintersperse(first, last, e, init);
   }
@@ -107,7 +107,7 @@ namespace algebra
             typename = std::enable_if_t<is_monoid_v<M>>>
   inline constexpr M mreplicate(std::size_t n, M e)
   {
-    M res = mzero<M>();
+    M res = mempty<M>();
     for (std::size_t i = 0; i < n; ++i)
       res = mappend(res, e);
     return res;

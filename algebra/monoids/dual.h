@@ -18,7 +18,7 @@ namespace algebra {
     public:
       template <typename T = M, typename = std::enable_if_t<is_monoid_v<T>>>
       constexpr dual()
-        : _v(mzero<M>())
+        : _v(mempty<M>())
       {}
       constexpr dual(M m)
         : _v(std::move(m))

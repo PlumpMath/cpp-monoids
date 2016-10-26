@@ -54,7 +54,7 @@ namespace algebra {
     : semigroup<std::tuple<TS...>>
   {
     static constexpr std::tuple<TS...> zero() {
-      return std::make_tuple(mzero<TS>()...);
+      return std::make_tuple(mempty<TS>()...);
     }
   };
 }
