@@ -19,7 +19,7 @@ namespace algebra {
         using num_type = typename Traits::type;
 
         constexpr num() : _v(Traits::zero_val()) {}
-        constexpr explicit num(num_type v) : _v(v) {}
+        constexpr num(num_type v) : _v(v) {}
         constexpr num(num const&) = default;
         constexpr num(num&&) = default;
 

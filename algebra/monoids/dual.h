@@ -20,7 +20,7 @@ namespace algebra {
       constexpr dual()
         : _v(mzero<M>())
       {}
-      explicit constexpr dual(M m)
+      constexpr dual(M m)
         : _v(std::move(m))
       {}
       constexpr dual(dual const&) = default;
@@ -35,11 +35,11 @@ namespace algebra {
       constexpr M* operator->() { return &_v; }
       constexpr M const* operator->() const { return &_v; }
 
-      constexpr operator M() const & {
+      constexpr explicit operator M() const & {
         return _v;
       }
 
-      constexpr operator M() && {
+      constexpr explicit operator M() && {
         return std::move(_v);
       }
 

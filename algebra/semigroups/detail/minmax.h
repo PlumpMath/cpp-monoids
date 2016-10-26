@@ -21,11 +21,11 @@ namespace algebra {
       public:
         using base_type = T;
 
-        constexpr explicit minmax(base_type const& v,
-                                  Compare less = Compare())
+        constexpr minmax(base_type const& v,
+                         Compare less = Compare())
           : _less(less), _v(v) {}
-        constexpr explicit minmax(base_type&& v,
-                                  Compare less = Compare())
+        constexpr minmax(base_type&& v,
+                         Compare less = Compare())
           : _less(less), _v(std::move(v)) {}
         constexpr minmax(minmax const&) = default;
         constexpr minmax(minmax&&) = default;
@@ -37,11 +37,11 @@ namespace algebra {
           return _v;
         }
 
-        constexpr operator base_type() const & {
+        constexpr explicit operator base_type() const & {
           return _v;
         }
 
-        constexpr operator base_type() && {
+        constexpr explicit operator base_type() && {
           return std::move(_v);
         }
 
