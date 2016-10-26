@@ -17,7 +17,7 @@ namespace algebra {
   template <typename... TS>
   struct is_semigroup<std::tuple<TS...>>
     : std::conditional_t<
-          static_cast<bool>(mconcat({ all(is_semigroup_v<TS>)... })),
+          mconcat({ all(is_semigroup_v<TS>)... }).value(),
           std::true_type,
           std::false_type
         >
@@ -26,7 +26,7 @@ namespace algebra {
   template <typename... TS>
   struct is_monoid<std::tuple<TS...>>
     : std::conditional_t<
-          static_cast<bool>(mconcat({ all(is_monoid_v<TS>)... })),
+          mconcat({ all(is_monoid_v<TS>)... }).value(),
           std::true_type,
           std::false_type
         >

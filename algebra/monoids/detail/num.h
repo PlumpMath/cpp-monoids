@@ -30,6 +30,10 @@ namespace algebra {
           return _v;
         }
 
+        constexpr num_type value() const {
+          return _v;
+        }
+
         constexpr num sappend(num r) const {
           return num(Traits::append(_v, r._v));
         }

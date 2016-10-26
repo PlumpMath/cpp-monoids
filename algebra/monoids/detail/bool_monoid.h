@@ -23,6 +23,10 @@ namespace algebra
 
         constexpr bool_monoid& operator=(bool_monoid const&) = default;
 
+        constexpr bool value() const {
+          return _v;
+        }
+
         constexpr explicit operator bool() const {
           return _v;
         }
