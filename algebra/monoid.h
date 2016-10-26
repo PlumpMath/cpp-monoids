@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "detail/are_same.h"
+#include "detail/are_convertible_to.h"
 #include "semigroup.h"
 
 #include <initializer_list>
@@ -57,10 +57,10 @@ namespace algebra
   template <typename M, typename M1, typename... MS,
             typename = std::enable_if_t<
                         is_monoid_v<M> &&
-                        detail::are_same_v<M, M1, MS...>>>
+                        detail::are_convertible_to_v<M, M1, MS...>>>
   inline constexpr M mconcat(M const& m, M1 const& m1, MS const&... ms)
   {
-    return mappend(m, mconcat(m1, ms...));
+    return mappend(m, mconcat<M>(m1, ms...));
   }
 
   template <typename M, typename = std::enable_if_t<is_monoid_v<M>>>

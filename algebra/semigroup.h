@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "detail/are_same.h"
+#include "detail/are_convertible_to.h"
 
 #include <iterator>
 #include <type_traits>
@@ -49,10 +49,10 @@ namespace algebra
   template <typename S, typename S1, typename... SS,
             typename = std::enable_if_t<
                         is_semigroup_v<S> &&
-                        detail::are_same_v<S, S1, SS...>>>
+                        detail::are_convertible_to_v<S, S1, SS...>>>
   inline constexpr S sconcat(S const& s, S1 const& s1, SS const&... ss)
   {
-    return sappend(s, sconcat(s1, ss...));
+    return sappend(s, sconcat<S>(s1, ss...));
   }
 
   template <typename InputIt, typename OutputIt,
